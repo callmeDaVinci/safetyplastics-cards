@@ -19,6 +19,14 @@
   },
   "people": [
     {
+      "slug": "vincent",
+      "name": "Vincent Ong",
+      "name_cn": "王詠盛",
+      "position": "Director",
+      "phone": "0162828195",
+      "email": "sales@safetyplastics.com.my"
+    },
+    {
       "slug": "junong",
       "name": "Jun Ong",
       "name_cn": "",
@@ -33,6 +41,14 @@
       "position": "R&D Engineer",
       "phone": "0196080430",
       "email": "casey@safetyplastics.com.my"
+    },
+    {
+      "slug": "darren",
+      "name": "Darren Chin",
+      "name_cn": "",
+      "position": "",
+      "phone": "01110831872",
+      "email": "rd@safetyplastics.com.my"
     }
   ]
 }

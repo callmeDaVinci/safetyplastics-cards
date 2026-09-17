@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Chin;Darren;;;
+FN:Darren Chin
+ORG:Safety Plastics Sdn Bhd
+TEL;TYPE=CELL,VOICE:+601110831872
+TEL;TYPE=WORK,VOICE:+60162828195
+EMAIL;TYPE=INTERNET,WORK:rd@safetyplastics.com.my
+URL:https://www.safetyplastics.com.my
+URL;TYPE=card:https://card.safetyplastics.com.my/darren
+ADR;TYPE=WORK:;;No. 17, PT 2507, Jalan Hi-Tech 2, Kawasan Perindustrian Hi-Tech, Jalan Sungai Lalang;Semenyih;Selangor;43500;Malaysia
+END:VCARD
