@@ -1,0 +1,38 @@
+{
+  "site": {
+    "base_url": "https://card.safetyplastics.com.my",
+    "company": "Safety Plastics Sdn Bhd",
+    "company_cn": "安全塑膠有限公司",
+    "reg_no": "198901011676 (188981-U)",
+    "tagline": "Revitalize the world with sustainable plastic",
+    "office_phone": "+6016 282 8195",
+    "office_email": "sales@safetyplastics.com.my",
+    "website": "https://www.safetyplastics.com.my",
+    "website_label": "safetyplastics.com.my",
+    "address_lines": [
+      "No. 17, PT 2507, Jalan Hi-Tech 2",
+      "Kawasan Perindustrian Hi-Tech",
+      "Jalan Sungai Lalang",
+      "43500 Semenyih, Selangor"
+    ],
+    "maps_query": "Safety Plastics Sdn Bhd, Jalan Hi-Tech 2, Semenyih"
+  },
+  "people": [
+    {
+      "slug": "junong",
+      "name": "Jun Ong",
+      "name_cn": "",
+      "position": "Operation Manager",
+      "phone": "0182342288",
+      "email": "junong@safetyplastics.com.my"
+    },
+    {
+      "slug": "casey",
+      "name": "Casey Hor Kar Chun",
+      "name_cn": "",
+      "position": "R&D Engineer",
+      "phone": "0196080430",
+      "email": "casey@safetyplastics.com.my"
+    }
+  ]
+}
