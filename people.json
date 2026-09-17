@@ -49,6 +49,14 @@
       "position": "Sales Engineer",
       "phone": "01110831872",
       "email": "rd@safetyplastics.com.my"
+    },
+    {
+      "slug": "shazreen",
+      "name": "Shazreen Izzati",
+      "name_cn": "",
+      "position": "QAQC Manager",
+      "phone": "0173919740",
+      "email": "qc@safetyplastics.com.my"
     }
   ]
 }
