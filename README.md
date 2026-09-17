@@ -102,3 +102,21 @@ link embed the URL, so always rebuild after changing it.
   system fallbacks. Chinese text uses Noto Sans TC.
 * Logos are embedded inside each page, so every card is a single self-contained
   HTML file plus its `.vcf`.
+
+## Staff directory (password protected)
+
+`https://card.safetyplastics.com.my/` asks for a password and then lists every
+card with Open / Copy link / WhatsApp buttons. The list is encrypted inside the
+page and decrypted in the browser, so the host never sees the password.
+
+The password lives in `directory.auth` on this PC only (git-ignored). To change it:
+
+```bash
+python build.py --password "NEW_PASSWORD"
+git add -A
+git commit -m "Change directory password"
+git push
+```
+
+If `directory.auth` is missing (e.g. on a new PC), the build falls back to
+`123456` and the page shows a warning banner until it is changed.

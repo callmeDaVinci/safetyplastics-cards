@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Safety Plastics · Name Cards</title>
+<meta name="theme-color" content="#292e57">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --navy: #292e57; --navy-deep: #1d2144; --red: #ed1c24;
+    --ground: #eef0f6; --paper: #fff; --ink: #1d2144; --ink-soft: #5d6283;
+    --line: #dfe2ee; --wa: #25d366; --warn-bg: #fff4d6; --warn-ink: #7a5300;
+    --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --body: "Barlow", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
+  a { color: inherit; text-decoration: none; }
+  button, input { font-family: inherit; font-size: inherit; }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .top { background: var(--navy); color: #fff; margin: 0 -16px; padding: 22px 16px 26px; }
+  .top .in { max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .top .logos { display: flex; align-items: center; gap: 14px; background: #fff; padding: 8px 12px; border-radius: 10px; }
+  .top .logos img { height: 30px; width: auto; display: block; }
+  .top .logos img.sbb { height: 20px; }
+  .top h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .02em; text-transform: uppercase; line-height: 1; }
+  .top .sub { font-size: 13px; color: #c9cde6; margin-top: 3px; }
+
+  .wrap { max-width: 720px; margin: 24px auto 0; }
+
+  /* login */
+  .login { max-width: 400px; margin: 40px auto 0; background: var(--paper); border-radius: 18px; padding: 26px 22px; box-shadow: 0 14px 40px rgba(29,33,68,.14); }
+  .login h2 { margin: 0 0 4px; font-family: var(--display); font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: .02em; color: var(--navy); }
+  .login p { margin: 0 0 16px; color: var(--ink-soft); font-size: 14.5px; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .field input { padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; font-size: 18px; letter-spacing: .1em; background: #fff; color: var(--ink); }
+  .field input:focus { border-color: var(--navy); outline: none; }
+  .login button { margin-top: 14px; width: 100%; min-height: 50px; border: 0; border-radius: 12px; background: var(--navy); color: #fff; font-weight: 600; font-size: 16px; cursor: pointer; }
+  .login button:hover { background: var(--navy-deep); }
+  .login button[disabled] { opacity: .6; cursor: wait; }
+  .err { margin-top: 12px; color: #b3121a; font-size: 14px; font-weight: 500; min-height: 1.4em; }
+
+  /* directory */
+  .banner { background: var(--warn-bg); color: var(--warn-ink); border-radius: 12px; padding: 12px 14px; font-size: 14px; margin-bottom: 16px; display: grid; gap: 4px; }
+  .banner b { font-weight: 600; }
+  .banner code { background: rgba(0,0,0,.06); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .bar .count { font-size: 14px; color: var(--ink-soft); }
+  .bar input { flex: 1 1 200px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; }
+  .bar .out { border: 1.5px solid var(--line); background: #fff; color: var(--ink-soft); border-radius: 10px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
+  .list { display: grid; gap: 10px; }
+  .row { background: var(--paper); border-radius: 14px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px 16px; align-items: center; box-shadow: 0 2px 10px rgba(29,33,68,.06); }
+  .row .name { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.1; color: var(--navy); }
+  .row .name .cn { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .15em; color: var(--ink-soft); margin-left: 8px; }
+  .row .pos { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+  .row .meta { font-size: 14px; color: var(--ink); margin-top: 4px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+  .row .meta span + span::before { content: " · "; color: var(--ink-soft); }
+  .row .acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .row .acts a, .row .acts button { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); font-weight: 600; font-size: 14px; cursor: pointer; }
+  .row .acts .open { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .row .acts .wa { color: #128c4a; border-color: #b9ebcd; }
+  .row .acts svg { width: 16px; height: 16px; }
+  .row .url { grid-column: 1 / -1; font-size: 12.5px; color: var(--ink-soft); overflow-wrap: anywhere; }
+  @media (max-width: 520px) {
+    .row { grid-template-columns: 1fr; }
+    .row .acts { justify-content: flex-start; }
+  }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="in">
+    <div class="logos"><img src="{{safety_logo}}" alt="Safety Plastics"><img class="sbb" src="{{sbb_logo}}" alt="SBB"></div>
+    <div>
+      <h1>Digital Name Cards</h1>
+      <div class="sub">Safety Plastics Sdn Bhd · staff directory</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <form class="login" id="login" autocomplete="off">
+    <h2>Enter password</h2>
+    <p>This list is for staff only. Individual cards stay public.</p>
+    <div class="field">
+      <label for="pw">Password</label>
+      <input id="pw" type="password" inputmode="numeric" autocomplete="current-password" required autofocus>
+    </div>
+    <button type="submit" id="go">Unlock</button>
+    <div class="err" id="err" aria-live="polite"></div>
+  </form>
+
+  <section id="dir" hidden>
+    <div class="banner" id="banner" hidden>
+      <b>Default password (123456) is still in use. Please change it.</b>
+      <span>On the PC with the project: run <code>python build.py --password YOUR_NEW_PASSWORD</code>, then <code>git add -A</code>, <code>git commit -m "Change password"</code>, <code>git push</code>. The new password takes effect within a minute.</span>
+    </div>
+    <div class="bar">
+      <input id="q" type="search" placeholder="Search name, position, email…" aria-label="Search">
+      <span class="count" id="count"></span>
+      <button class="out" id="out" type="button">Lock</button>
+    </div>
+    <div class="list" id="list"></div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  var BLOB = "{{blob}}";     // base64: salt(16) | iv(12) | ciphertext
+  var ITER = {{iterations}};
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  var $ = function (id) { return document.getElementById(id); };
+  var people = [], base = "";
+
+  function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function say(m) { var t = $('toast'); t.textContent = m; t.classList.add('on'); setTimeout(function () { t.classList.remove('on'); }, 1600); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  async function unlock(pw) {
+    var raw = b64(BLOB), salt = raw.slice(0, 16), iv = raw.slice(16, 28), ct = raw.slice(28);
+    var km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: ITER, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ct);
+    return JSON.parse(dec.decode(pt));
+  }
+
+  function render(filter) {
+    var q = (filter || '').trim().toLowerCase();
+    var rows = people.filter(function (p) {
+      return !q || [p.name, p.name_cn, p.position, p.email, p.phone].join(' ').toLowerCase().indexOf(q) >= 0;
+    });
+    $('count').textContent = rows.length + ' of ' + people.length;
+    $('list').innerHTML = rows.map(function (p) {
+      var url = base + '/' + p.slug;
+      return '<div class="row">' +
+        '<div><div class="name">' + esc(p.name) + (p.name_cn ? '<span class="cn">' + esc(p.name_cn) + '</span>' : '') + '</div>' +
+        (p.position ? '<div class="pos">' + esc(p.position) + '</div>' : '') +
+        '<div class="meta"><span>' + esc(p.phone) + '</span><span>' + esc(p.email) + '</span></div></div>' +
+        '<div class="acts">' +
+          '<a class="open" href="' + url + '" target="_blank" rel="noopener">Open card</a>' +
+          '<button type="button" data-copy="' + url + '">Copy link</button>' +
+          '<a class="wa" href="https://wa.me/' + p.wa + '" target="_blank" rel="noopener">WhatsApp</a>' +
+        '</div>' +
+        '<div class="url">' + esc(url) + '</div>' +
+      '</div>';
+    }).join('') || '<p style="color:var(--ink-soft)">No match.</p>';
+  }
+
+  function show(data) {
+    people = data.people; base = data.base_url;
+    $('banner').hidden = !data.default_password;
+    $('login').hidden = true; $('dir').hidden = false;
+    render('');
+  }
+
+  $('login').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var pw = $('pw').value; $('err').textContent = ''; $('go').disabled = true;
+    try {
+      var data = await unlock(pw);
+      try { sessionStorage.setItem('cards_pw', pw); } catch (_) {}
+      show(data);
+    } catch (_) {
+      $('err').textContent = 'Wrong password. Try again.';
+      $('pw').select();
+    }
+    $('go').disabled = false;
+  });
+  $('q').addEventListener('input', function () { render(this.value); });
+  $('list').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-copy]'); if (!b) return;
+    navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function () { say('Link copied'); }, function () { say('Copy failed'); });
+  });
+  $('out').addEventListener('click', function () {
+    try { sessionStorage.removeItem('cards_pw'); } catch (_) {}
+    location.reload();
+  });
+
+  // Stay unlocked for this browser tab.
+  try {
+    var saved = sessionStorage.getItem('cards_pw');
+    if (saved) unlock(saved).then(show).catch(function () { sessionStorage.removeItem('cards_pw'); });
+  } catch (_) {}
+})();
+</script>
+</body>
+</html>

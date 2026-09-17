@@ -16,7 +16,11 @@ import sys
 import urllib.parse
 from pathlib import Path
 
+import secrets
+import hashlib
+
 import segno
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 ROOT = Path(__file__).parent
 DIST = ROOT / "docs"
@@ -24,6 +28,29 @@ TEMPLATE = (ROOT / "template.html").read_text(encoding="utf-8")
 CFG = json.loads((ROOT / "people.json").read_text(encoding="utf-8"))
 SITE = CFG["site"]
 FRAGMENT = "--fragment" in sys.argv
+AUTH_FILE = ROOT / "directory.auth"      # git-ignored: {"password": ...}
+DEFAULT_PASSWORD = "123456"
+PBKDF2_ITER = 300_000
+
+
+def load_password() -> str:
+    """Password for the directory page. `--password NEW` on the command line
+    updates directory.auth; otherwise the file is used; otherwise the default."""
+    pw = DEFAULT_PASSWORD
+    if AUTH_FILE.exists():
+        pw = json.loads(AUTH_FILE.read_text(encoding="utf-8")).get("password", pw)
+    if "--password" in sys.argv:
+        pw = sys.argv[sys.argv.index("--password") + 1]
+        AUTH_FILE.write_text(json.dumps({"password": pw}, indent=2), encoding="utf-8")
+        print(f"saved new password to {AUTH_FILE.name} (git-ignored, never committed)")
+    return pw
+
+
+def encrypt_directory(password: str, payload: dict) -> str:
+    salt, iv = secrets.token_bytes(16), secrets.token_bytes(12)
+    key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, PBKDF2_ITER, dklen=32)
+    ct = AESGCM(key).encrypt(iv, json.dumps(payload, ensure_ascii=False).encode(), None)
+    return base64.b64encode(salt + iv + ct).decode()
 
 
 def data_uri(path: Path) -> str:
@@ -160,13 +187,23 @@ def main():
         index_links.append(f'<li><a href="/{p["slug"]}/">{html.escape(p["name"])}</a> — {html.escape(p["position"])}</li>')
         print(f"built {p['slug']:10s} -> {SITE['base_url']}/{p['slug']}")
 
-    # Root page: plain redirect to the company website so the bare domain isn't blank.
-    (DIST / "index.html").write_text(
-        "<!doctype html><meta charset='utf-8'>"
-        f"<meta http-equiv='refresh' content='0;url={SITE['website']}'>"
-        f"<title>Safety Plastics</title><a href='{SITE['website']}'>Safety Plastics Sdn Bhd</a>",
-        encoding="utf-8",
-    )
+    # Root page: password-protected staff directory (encrypted, decrypted in the browser).
+    password = load_password()
+    payload = {
+        "base_url": SITE["base_url"],
+        "default_password": password == DEFAULT_PASSWORD,
+        "people": [{
+            "slug": p["slug"], "name": p["name"], "name_cn": p.get("name_cn", ""),
+            "position": p.get("position", ""), "phone": pretty(p["phone"]),
+            "email": p["email"], "wa": my_e164(p["phone"]).lstrip("+"),
+        } for p in CFG["people"]],
+    }
+    directory = (ROOT / "directory.html").read_text(encoding="utf-8")
+    for k, v in {**LOGOS, "blob": encrypt_directory(password, payload), "iterations": str(PBKDF2_ITER)}.items():
+        directory = directory.replace("{{" + k + "}}", v)
+    (DIST / "index.html").write_text(directory, encoding="utf-8")
+    if payload["default_password"]:
+        print("WARNING: directory uses the default password 123456 - change with: python build.py --password NEW")
     # 404 for GitHub Pages / Cloudflare Pages
     (DIST / "404.html").write_text(
         "<!doctype html><meta charset='utf-8'><title>Card not found</title>"
