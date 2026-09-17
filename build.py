@@ -142,7 +142,7 @@ def render(p: dict) -> str:
         "sst_no": SITE["sst_no"],
         "msic": SITE["msic"],
         "msic_desc": html.escape(SITE["msic_desc"]),
-        "tagline": SITE["tagline"],
+        "tagline": html.escape(SITE["tagline"]),
         "office_phone": SITE["office_phone"],
         "office_phone_e164": my_e164(SITE["office_phone"]),
         "website": SITE["website"],
