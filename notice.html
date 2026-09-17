@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{name}} · Scan or Tap</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Noto+Sans+TC:wght@500&display=swap">
+<style>
+  :root {
+    --navy: #292e57; --navy-deep: #1d2144; --red: #ed1c24;
+    --ground: #eef0f6; --paper: #fff; --ink: #1d2144; --ink-soft: #5d6283; --line: #dfe2ee;
+    --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Barlow", "Segoe UI", Arial, sans-serif;
+    --cn: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 700px; overflow: hidden; background: transparent; }
+  body { font-family: var(--body); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  .card { width: 1200px; height: 700px; background: var(--paper); border-radius: 40px; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; position: relative; }
+
+  /* header: logos left, person right, like the print card */
+  .head { display: flex; align-items: center; justify-content: space-between; padding: 40px 56px 0; }
+  .logos { display: flex; align-items: center; gap: 30px; }
+  .logos img { height: 64px; }
+  .logos img.sbb { height: 44px; }
+  .who { text-align: right; }
+  .who .name { font-family: var(--display); font-weight: 700; font-size: 44px; line-height: 1; color: var(--navy); letter-spacing: .01em; }
+  .who .name .cn { font-family: var(--cn); font-weight: 500; font-size: 22px; letter-spacing: .18em; color: var(--ink-soft); margin-left: 12px; }
+  .who .pos { margin-top: 8px; font-size: 16px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* the two options */
+  .opts { display: grid; grid-template-columns: 1fr 96px 1fr; align-items: center; padding: 26px 96px 0; }
+  .opt { display: grid; justify-items: center; text-align: center; gap: 18px; }
+  .tile { width: 260px; height: 260px; border-radius: 30px; background: var(--ground); display: grid; place-items: center; }
+  .tile.qr { background: #fff; border: 3px solid var(--line); }
+  .tile.qr svg { width: 212px; height: 212px; display: block; }
+  .tile.nfc svg { width: 176px; height: 176px; display: block; }
+  .opt h2 { font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 1; text-transform: uppercase; letter-spacing: .03em; color: var(--navy); }
+  .opt p { font-size: 20px; color: var(--ink-soft); margin-top: -8px; }
+  .or { justify-self: center; align-self: start; margin-top: 100px; width: 56px; height: 56px; border-radius: 50%; background: var(--red); color: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 26px; text-transform: uppercase; letter-spacing: .04em; }
+
+  /* footer sweep */
+  .foot { position: relative; height: 96px; margin-top: 18px; }
+  .foot svg.sweep { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .foot .txt { position: absolute; left: 56px; right: 56px; bottom: 22px; display: flex; justify-content: space-between; align-items: baseline; color: #fff; }
+  .foot .txt .co { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: .04em; text-transform: uppercase; }
+  .foot .txt .url { font-size: 18px; font-weight: 500; color: #c9cde6; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="logos"><img src="{{safety_logo}}" alt=""><img class="sbb" src="{{sbb_logo}}" alt=""></div>
+    <div class="who">
+      <div class="name">{{name}}{{name_cn_inline}}</div>
+      <div class="pos">{{position}}</div>
+    </div>
+  </div>
+
+  <div class="opts">
+    <div class="opt">
+      <div class="tile qr">{{qr_svg}}</div>
+      <h2>Scan</h2>
+      <p>with your phone camera</p>
+    </div>
+    <div class="or">or</div>
+    <div class="opt">
+      <div class="tile nfc">
+        <svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="22" y="14" width="52" height="92" rx="10" stroke="#292e57" stroke-width="6"/>
+          <line x1="40" y1="94" x2="56" y2="94" stroke="#292e57" stroke-width="6"/>
+          <path d="M84 44a16 16 0 0 1 0 22" stroke="#ed1c24" stroke-width="6"/>
+          <path d="M94 34a30 30 0 0 1 0 42" stroke="#ed1c24" stroke-width="6"/>
+          <path d="M104 24a44 44 0 0 1 0 62" stroke="#ed1c24" stroke-width="6"/>
+        </svg>
+      </div>
+      <h2>Tap</h2>
+      <p>hold your phone on the card</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <svg class="sweep" viewBox="0 0 1200 96" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#ed1c24" d="M0 50 C 330 8, 780 -6, 1200 22 L1200 36 C 780 8, 330 22, 0 64 Z"/>
+      <path fill="#292e57" d="M0 64 C 330 22, 780 8, 1200 36 L1200 96 L0 96 Z"/>
+    </svg>
+    <div class="txt"><span class="co">Safety Plastics Sdn Bhd</span><span class="url">{{card_url_label}}</span></div>
+  </div>
+</div>
+</body>
+</html>
